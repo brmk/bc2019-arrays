@@ -1,4 +1,4 @@
-export const run = (name, tests, implementations) => {
+export const run = (name, tests, implementations, strict) => {
   describe(name, () => {
     it("runs", () => {});
     tests.forEach(test => {
@@ -9,12 +9,15 @@ export const run = (name, tests, implementations) => {
           test.tests.forEach(testCase => {
             const args = testCase.createArgs();
             const result = func(...args);
-            if (typeof result === "undefined") {
-              return;
+            if (typeof result === "undefined" && !strict) {
+              it("is not implemented", () => {
+                expect(result).toBe(undefined);
+              });
+            } else {
+              it("returns valid result", () => {
+                testCase.validate(result, args);
+              });
             }
-            it("returns valid result", () => {
-              testCase.validate(result, args);
-            });
           });
         });
       }

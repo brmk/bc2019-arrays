@@ -41,13 +41,20 @@
 
   REQUIREMENTS: use map method
 */
-export const nameify = input =>
-  input.map(person => `${person.profile.firstName} ${person.profile.lastName}`);
+export const nameify = input => {
+  return [];
+};
 
 // input: array of elements of type Person
 // return a new array of emails that have verified true
+// example output ['ihor@uplab.io', 'test@gmail.com']
+
+// HINT 1: there can be more than one verified email per Person
+// HINT 2: can be accomplished using map, filter, reduce, flat, concat (not required to use all of them)
 // REQUIREMENTS: use at least two of the methods: map, filter, reduce
-export const verifiedEmails = input => {};
+export const verifiedEmails = input => {
+  return [];
+};
 
 // Turn an array of numbers into a sum of all the numbers
 // input: [2, 4, 6];
@@ -56,6 +63,7 @@ export const verifiedEmails = input => {};
 // REQUIREMENTS: use reduce method
 export function total(input) {
   // your code here
+  return 0;
 }
 
 // Turn an array of users objects into a count of how many users are notified
@@ -74,7 +82,7 @@ export function total(input) {
   ];
   output: 6
 */
-// REQUIREMENTS: use reduce method
+// REQUIREMENTS: use reduce or filter method
 
 export function totalNotified(input) {
   // your code here
