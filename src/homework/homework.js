@@ -41,9 +41,7 @@
 
   REQUIREMENTS: use map method
 */
-export const nameify = input => {
-  return [];
-};
+export const nameify = input => {};
 
 // input: array of elements of type Person
 // return a new array of emails that have verified true
@@ -96,7 +94,9 @@ export function lengthSort(input) {
 }
 
 // Filter array of Person to include only people of age under 18
-export function teens(input) {}
+export function teens(input) {
+  return [];
+}
 
 // Practice arrays - "pop, push, shift, unshift"
 export function practiceMutators() {
@@ -114,40 +114,35 @@ export function practiceMutators() {
   // STEP 6: Return the resulting array from the function
 }
 
-// Practice search methods & extras - "find, includes, indexOf, lastIndexOf"
+// Practice search methods & extras - "find, includes, indexOf"
 // example array: [364377, 579734, 959396, 625475, 657947, 290437, 268555, 542303, 252052, 672093, 503348, 734317, 950756, 660369, 630027, 738059, 663419, 767141, 418189, 271867];
 export function practiceSearch(array, searchableNumber) {
   // STEP 1: find the first number that is multiple to 2
-  const s1 = null; // implement
+  const s1 = array.find(a => a % 2 === 0); // implement
   console.log("[Practice search] STEP 1:", s1);
 
   // STEP 2: assign "YES" to s2 variable if the array includes a number searchableNumber. Otherwise "NO"
   const s2 = null; // implement
   console.log("[Practice search] STEP 2:", s2);
 
-  // STEP 3: Find the index of the first number higher than a arithmetic mean number of the array
+  // STEP 3: Find the index of the searchableNumber or -1
   const s3 = null; // implement
   console.log("[Practice search] STEP 3:", s3);
 
-  // STEP 4: Find the index of the last number higher than a arithmetic mean number of the array
+  // STEP 4: Assign true to s4 if any of the elements is higher than 1000000, else false.
   const s4 = null; // implement
   console.log("[Practice search] STEP 4:", s4);
 
-  // STEP 5: Assign true to s5 if any of the elements is higher than 100000000, else false.
+  // STEP 5: Assign true to s5 if all elements are integers (without floating point), else false.
   const s5 = null; // implement
   console.log("[Practice search] STEP 5:", s5);
-
-  // STEP 6: Assign true to s6 if all elements are integers, else false.
-  const s6 = null; // implement
-  console.log("[Practice search] STEP 6:", s6);
 
   return {
     s1,
     s2,
     s3,
     s4,
-    s5,
-    s6
+    s5
   };
 }
 

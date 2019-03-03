@@ -111,26 +111,110 @@ const tests = [
     ]
   },
   {
+    functionName: "practiceMutators",
+    tests: [
+      {
+        createArgs: (n = 10) => [],
+        validate: (result, args) => {
+          expect(result && result.length).toEqual(6);
+        }
+      }
+    ]
+  },
+  {
     functionName: "practiceSearch",
+    tests: [
+      {
+        repeat: 5,
+        createArgs: () => {
+          const hasFloat = faker.random.boolean();
+          const numbers = new Array(
+            faker.random.number({
+              min: 10,
+              max: 50
+            })
+          )
+            .fill(null)
+            .map(() =>
+              faker.random.number({
+                min: 100,
+                max: 9999999,
+                precision: hasFloat ? 10 : 0
+              })
+            );
+          const bool = faker.random.boolean();
+          return [
+            numbers,
+            bool ? numbers[9] : faker.random.number({ min: 100, max: 9999999 })
+          ];
+        },
+        validate: (result, args) => {
+          const expected = {
+            s1: null,
+            s2: "NO",
+            s3: null,
+            s4: false,
+            s5: true
+          };
+          const array = args[0];
+          const searchableNumber = args[1];
+
+          for (let i = 0; i < array.length; i++) {
+            if (array[i] % 2 && expected.s1 !== null) {
+              expected.s1 === array[i];
+            }
+            if (array[i] === searchableNumber) {
+              expected.s2 = "YES";
+            }
+            if (array[i] > 1000000) {
+              expected.s4 = true;
+            }
+            if (!Number.isInteger(array[i])) {
+              expected.s5 = false;
+            }
+          }
+
+          expected.s3 = array.indexOf(searchableNumber);
+
+          expect(result).toEqual(expected);
+        }
+      }
+    ]
+  },
+  {
+    functionName: "unique",
     tests: [
       {
         createArgs: (n = 10) => [
           new Array(faker.random.number({ min: 10, max: 50 }))
             .fill(null)
+            .map(() => faker.random.number({ min: 100, max: 9999999 })),
+          new Array(faker.random.number({ min: 10, max: 50 }))
+            .fill(null)
             .map(() => faker.random.number({ min: 100, max: 9999999 }))
         ],
         validate: (result, args) => {
-          const expected = {
-            s1: null,
-            s2: null,
-            s3: null,
-            s4: null,
-            s5: null,
-            s6: null
-          };
-          // TODO: finish
-
-          expect(result).toEqual(expected);
+          const unique = _.uniq([...args[0], ...args[1]]);
+          expect(result.sort()).toEqual(unique.sort());
+        }
+      }
+    ]
+  },
+  {
+    functionName: "iter",
+    tests: [
+      {
+        createArgs: (n = 10) => [
+          new Array(faker.random.number({ min: 10, max: 50 }))
+            .fill(null)
+            .map(() => faker.random.number({ min: 100, max: 9999999 })),
+          faker.random.number({ min: 100, max: 9999999 })
+        ],
+        validate: (result, args) => {
+          const array = args[0];
+          const threshold = args[1];
+          const el = array.find(n => n > threshold);
+          expect(result).toEqual(el);
         }
       }
     ]
