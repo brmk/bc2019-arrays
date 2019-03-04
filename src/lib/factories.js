@@ -18,9 +18,7 @@ export const personFactory = () => {
   const emails = new Array(faker.random.number({ min: 1, max: 3 }))
     .fill(null)
     .map(emailFactory);
-  const lastLoggedInAt = new Date(
-    faker.random.arrayElement(faker.date.past(), faker.date.recent())
-  );
+  const lastLoggedInAt = new Date(faker.date.recent());
   const registeredAt = new Date(faker.date.past());
   const age = faker.random.number({ min: 14, max: 60 });
 

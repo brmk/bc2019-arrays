@@ -150,7 +150,7 @@ const tests = [
         },
         validate: (result, args) => {
           const expected = {
-            s1: null,
+            s1: undefined,
             s2: "NO",
             s3: null,
             s4: false,
@@ -160,7 +160,10 @@ const tests = [
           const searchableNumber = args[1];
 
           for (let i = 0; i < array.length; i++) {
-            if (array[i] % 2 && expected.s1 !== null) {
+            if (
+              (array[i] % 2 && expected.s1 === null) ||
+              expected.s1 === undefined
+            ) {
               expected.s1 === array[i];
             }
             if (array[i] === searchableNumber) {
@@ -213,7 +216,7 @@ const tests = [
         validate: (result, args) => {
           const array = args[0];
           const threshold = args[1];
-          const el = array.find(n => n > threshold);
+          const el = array.find(n => n > threshold) || null;
           expect(result).toEqual(el);
         }
       }

@@ -1,6 +1,6 @@
 export const run = (name, tests, implementations, strict) => {
   describe(name, () => {
-    it("runs", () => {});
+    // it("runs", () => {});
     tests.forEach(test => {
       const func = implementations[test.functionName];
 
